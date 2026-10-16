@@ -1,0 +1,2 @@
+uvicorn main:app --reload ใน terminal ก่อน
+copy path index.html เปิดใน browser
