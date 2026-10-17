@@ -155,11 +155,13 @@
 
             <div class="form-group">
                 <label>3. รายละเอียดพื้นที่</label>
-                <input type="number" id="area" placeholder="พื้นที่ (ตร.ม.) เช่น 50" required>
+                <!-- เติม min="20" เพื่อบังคับพื้นที่ห้ามต่ำกว่า 20 -->
+                <input type="number" id="area" placeholder="พื้นที่ (ตร.ม.) เช่น 50" min="20" required>
             </div>
             <div class="form-group" style="display: flex; gap: 15px;">
-                <input type="number" id="bedrooms" placeholder="ห้องนอน" required>
-                <input type="number" id="bathrooms" placeholder="ห้องน้ำ" required>
+                <!-- เติม min="1" เพื่อบังคับห้องนอนและห้องน้ำห้ามต่ำกว่า 1 -->
+                <input type="number" id="bedrooms" placeholder="ห้องนอน" min="1" required>
+                <input type="number" id="bathrooms" placeholder="ห้องน้ำ" min="1" required>
             </div>
             
             <button type="submit">✨ คำนวณราคาประเมิน</button>
@@ -190,13 +192,24 @@
             const bathInput = document.getElementById('bathrooms');
             
             if (propType === 'Apartment') {
-                bedInput.value = 1;
+                // --- ห้องนอน: อนุญาตให้พิมพ์ได้ 1-2 ห้อง ---
+                bedInput.disabled = false;
+                bedInput.max = 2;
+                if (bedInput.value > 2) bedInput.value = 2;
+                bedInput.placeholder = "ห้องนอน (1-2)";
+                
+                // --- ห้องน้ำ: ล็อกตายตัวที่ 1 ห้อง ---
                 bathInput.value = 1;
-                bedInput.disabled = true;
                 bathInput.disabled = true;
+                bathInput.placeholder = "ห้องน้ำ";
+
             } else {
+                // คืนค่าปกติสำหรับบ้านและคอนโด
                 bedInput.disabled = false;
                 bathInput.disabled = false;
+                bedInput.removeAttribute('max');
+                bedInput.placeholder = "ห้องนอน";
+                bathInput.placeholder = "ห้องน้ำ";
             }
         }
 
