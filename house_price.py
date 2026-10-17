@@ -6,7 +6,8 @@ clean_data = []
 with open('Bkk_Real_Estate_data.csv', 'r', encoding='utf-8') as f:
     for i, line in enumerate(f):
         if i == 0: continue # ข้ามบรรทัดหัวตาราง
-        parts = line.strip().split()
+        cleaned_line = line.replace('Phrom Phong', 'PhromPhong').strip()
+        parts = cleaned_line.split()
         if len(parts) >= 6:
             try:
                 # ข้อมูลใหม่เรียงตาม: Type, Location, Area, Bedrooms, Bathrooms, Price
@@ -47,9 +48,9 @@ A = np.column_stack((
     df_encoded[features].values * 1 
 )).astype(float)
 
-b = df_encoded['Price'].values.astype(float)
+b_log = np.log(df['Price'].values.astype(float))
 # คำนวณหาค่าน้ำหนัก (Weights) ด้วย Pseudo-Inverse
-weights = np.linalg.pinv(A.T @ A) @ A.T @ b
+weights = np.linalg.pinv(A.T @ A) @ A.T @ b_log
 
 # ==========================================
 print("\n=== กรุณาใส่ข้อมูลเพื่อทำนายราคา ===")
@@ -80,7 +81,8 @@ if f"Location_{location}" in features:
     input_vector[features.index(f"Location_{location}")] = 1
 
 # คำนวณราคาทำนาย: w0 + (w_other * input_vector)
-predicted_price = weights[0] + np.dot(weights[1:], input_vector)
+predicted_log = weights[0] + np.dot(weights[1:], input_vector)
+predicted_price = np.exp(predicted_log)
 
 print("\n" + "=" * 50)
 print(f"🎯 ราคาบ้านที่ทำนายได้ : {predicted_price:,.2f} บาท")
@@ -88,8 +90,11 @@ print("=" * 50)
 
 # ==========================================
 # การประเมินความคลาดเคลื่อน (Vector Norm)
-b_hat = A @ weights
-error_vector = b - b_hat
+# ของใหม่: แปลงกลับเป็นราคาบาทก่อน
+b_hat = np.exp(A @ weights)
+# ราคาจริงของทุกบ้านในตาราง
+actual_price = df['Price'].values.astype(float)
+error_vector = actual_price - b_hat
 error_norm = np.linalg.norm(error_vector)
 rmse = error_norm / np.sqrt(len(df))
 

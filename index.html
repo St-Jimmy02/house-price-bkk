@@ -107,8 +107,17 @@
 
             <label>2. เลือกทำเลที่ตั้ง (จิ้มหมุดบนแผนที่ได้เลย)</label>
             <div class="map-container">
-                <!-- ใช้รูปแผนที่สีน้ำเงินเดิม -->
                 <img src="image.png" alt="แผนที่ กทม." class="map-image">
+                <div class="map-pin" data-loc="Sukhumvit" style="top: 52%; left: 41%;" onclick="selectMap('Sukhumvit')"></div>
+                <div class="pin-label" style="top: 52%; left: 41%;">สุขุมวิท</div>
+                
+                <!-- === เพิ่มหมุดพร้อมพงษ์ตรงนี้ === -->
+                <div class="map-pin" data-loc="PhromPhong" style="top: 52.5%; left: 42.5%;" onclick="selectMap('PhromPhong')"></div>
+                <div class="pin-label" style="top: 52.5%; left: 42.5%;">พร้อมพงษ์</div>
+                <!-- ========================= -->
+
+                <div class="map-pin" data-loc="Thonglor" style="top: 53%; left: 44%;" onclick="selectMap('Thonglor')"></div>
+                <div class="pin-label" style="top: 53%; left: 44%;">ทองหล่อ</div>
                 
                 <!-- พิกัดใหม่ที่ปรับเทียบกับแผนที่เขตอย่างละเอียด -->
                 <div class="map-pin active" data-loc="Siam" style="top: 52%; left: 37%;" onclick="selectMap('Siam')"></div>
@@ -139,13 +148,14 @@
                 <div class="pin-label" style="top: 36%; left: 45%;">ลาดพร้าว</div>
             </div>
             
-            <div class="form-group" style="display:none;">
+            <div class="form-group">
                 <select id="location" required onchange="syncMap()">
                     <option value="Siam">สยาม (Siam)</option>
                     <option value="Ari">อารีย์ (Ari)</option>
                     <option value="Silom">สีลม (Silom)</option>
                     <option value="Sathorn">สาทร (Sathorn)</option>
                     <option value="Sukhumvit">สุขุมวิท (Sukhumvit)</option>
+                    <option value="PhromPhong">พร้อมพงษ์ (Phrom Phong)</option>
                     <option value="Ratchada">รัชดา (Ratchada)</option>
                     <option value="Thonglor">ทองหล่อ (Thonglor)</option>
                     <option value="Ekkamai">เอกมัย (Ekkamai)</option>

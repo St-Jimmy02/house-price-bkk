@@ -9,7 +9,8 @@ clean_data = []
 with open('Bkk_Real_Estate_data.csv', 'r', encoding='utf-8') as f:
     for i, line in enumerate(f):
         if i == 0: continue
-        parts = line.strip().split()
+        cleaned_line = line.replace('Phrom Phong', 'PhromPhong').strip()
+        parts = cleaned_line.split()
         if len(parts) >= 6:
             try:
                 prop_type = parts[0]
@@ -34,7 +35,7 @@ b_log = np.log(df['Price'].values.astype(float))
 weights = np.linalg.pinv(A.T @ A) @ A.T @ b_log
 
 # --- 3. วิเคราะห์ความคลาดเคลื่อน (แยกตามทำเล) ---
-df['Predicted_Price'] = A @ weights
+df['Predicted_Price'] = np.exp(A @ weights)
 df['Abs_Error'] = np.abs(df['Price'] - df['Predicted_Price'])
 df['Error_Percent'] = (df['Abs_Error'] / df['Price']) * 100
 
