@@ -17,11 +17,6 @@ with open('Bkk_Real_Estate_data.csv', 'r', encoding='utf-8') as f:
                 baths = int(parts[4])
                 price = float(parts[5])
                 
-                # กฎ: ถ้าเป็น Apartment ให้ข้อมูลถูกตั้งค่าเป็น 1 ห้องนอน 1 ห้องน้ำเสมอ
-                if prop_type == 'Apartment':
-                    beds = 1
-                    baths = 1
-                    
                 clean_data.append([prop_type, location, area, beds, baths, price])
             except ValueError:
                 pass 
