@@ -28,8 +28,10 @@ features_cols = [col for col in df_encoded.columns if col != 'Price']
 
 # --- 2. คำนวณ Linear Algebra ---
 A = np.column_stack((np.ones(len(df_encoded)), df_encoded[features_cols].values * 1)).astype(float)
-b = df['Price'].values.astype(float)
-weights = np.linalg.pinv(A.T @ A) @ A.T @ b
+#log transformation
+# แปลงราคา b ให้เป็น log(b) ก่อนนำไปหา weights
+b_log = np.log(df['Price'].values.astype(float))
+weights = np.linalg.pinv(A.T @ A) @ A.T @ b_log
 
 # --- 3. วิเคราะห์ความคลาดเคลื่อน (แยกตามทำเล) ---
 df['Predicted_Price'] = A @ weights
@@ -66,7 +68,12 @@ def predict_price(data: PropertyData):
     if f"Location_{data.location}" in features_cols: 
         input_vector[features_cols.index(f"Location_{data.location}")] = 1
 
-    predicted_price = weights[0] + np.dot(weights[1:], input_vector)
+    #log transformation
+    # โมเดลจะทำนายออกมาเป็นค่า Log
+    predicted_log = weights[0] + np.dot(weights[1:], input_vector)
+    
+    # แปลงกลับเป็นราคาบาทด้วย Exponential (np.exp)
+    predicted_price = np.exp(predicted_log)
     
     # ดึงค่าความคลาดเคลื่อนของทำเลที่เลือก
     mae = loc_errors.get(data.location, {}).get('Abs_Error', 0)
