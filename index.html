@@ -107,45 +107,44 @@
 
             <label>2. เลือกทำเลที่ตั้ง (จิ้มหมุดบนแผนที่ได้เลย)</label>
             <div class="map-container">
-                <img src="image.png" alt="แผนที่ กทม." class="map-image">
-                <div class="map-pin" data-loc="Sukhumvit" style="top: 52%; left: 41%;" onclick="selectMap('Sukhumvit')"></div>
-                <div class="pin-label" style="top: 52%; left: 41%;">สุขุมวิท</div>
+                <img src="bkk.png" alt="แผนที่ กทม." class="map-image">
+                                
+                <!-- อารีย์ (จุดซ้ายบน) -->
+                <div class="map-pin" data-loc="Ari" style="top: 40%; left: 32%;" onclick="selectMap('Ari')"></div>
+                <div class="pin-label" style="top: 40%; left: 32%;">อารีย์</div>
+
+                <!-- รัชดา (จุดขวาบน) -->
+                <div class="map-pin" data-loc="Ratchada" style="top: 39%; left: 37%;" onclick="selectMap('Ratchada')"></div>
+                <div class="pin-label" style="top: 39%; left: 37%;">รัชดา</div>
+
+                <!-- สยาม (จุดกลางซ้าย) -->
+                <div class="map-pin active" data-loc="Siam" style="top: 54%; left: 30%;" onclick="selectMap('Siam')"></div>
+                <div class="pin-label" style="top: 54%; left: 30%;">สยาม</div>
+
+                <!-- สีลม (จุดใต้สยาม) -->
+                <div class="map-pin" data-loc="Silom" style="top: 62%; left: 27%;" onclick="selectMap('Silom')"></div>
+                <div class="pin-label" style="top: 62%; left: 27%;">สีลม</div>
+
+                <!-- สาทร (จุดล่างสุดฝั่งซ้าย) -->
+                <div class="map-pin" data-loc="Sathorn" style="top: 67%; left: 30%;" onclick="selectMap('Sathorn')"></div>
+                <div class="pin-label" style="top: 67%; left: 30%;">สาทร</div>
+
+                <!-- ลาดพร้าว (จุดเขียวด้านบน) -->
+                <div class="map-pin" data-loc="Ladprao" style="top: 22%; left: 50%;" onclick="selectMap('Ladprao')"></div>
+                <div class="pin-label" style="top: 22%; left: 40%;">ลาดพร้าว</div>
+
+                <!-- กลุ่มแนวยาว (สุขุมวิท, พร้อมพงษ์, ทองหล่อ, เอกมัย) -->
+                <div class="map-pin" data-loc="Sukhumvit" style="top: 58%; left: 41%;" onclick="selectMap('Sukhumvit')"></div>
+                <div class="pin-label" style="top: 58%; left: 41%;">สุขุมวิท</div>
                 
-                <!-- === เพิ่มหมุดพร้อมพงษ์ตรงนี้ === -->
-                <div class="map-pin" data-loc="PhromPhong" style="top: 52.5%; left: 42.5%;" onclick="selectMap('PhromPhong')"></div>
-                <div class="pin-label" style="top: 52.5%; left: 42.5%;">พร้อมพงษ์</div>
-                <!-- ========================= -->
+                <div class="map-pin" data-loc="PhromPhong" style="top: 62%; left: 44%;" onclick="selectMap('PhromPhong')"></div>
+                <div class="pin-label" style="top: 62%; left: 44%;">พร้อมพงษ์</div>
 
-                <div class="map-pin" data-loc="Thonglor" style="top: 53%; left: 44%;" onclick="selectMap('Thonglor')"></div>
-                <div class="pin-label" style="top: 53%; left: 44%;">ทองหล่อ</div>
-                
-                <!-- พิกัดใหม่ที่ปรับเทียบกับแผนที่เขตอย่างละเอียด -->
-                <div class="map-pin active" data-loc="Siam" style="top: 52%; left: 37%;" onclick="selectMap('Siam')"></div>
-                <div class="pin-label" style="top: 52%; left: 37%;">สยาม</div>
-                
-                <div class="map-pin" data-loc="Ari" style="top: 45%; left: 37%;" onclick="selectMap('Ari')"></div>
-                <div class="pin-label" style="top: 45%; left: 37%;">อารีย์</div>
+                <div class="map-pin" data-loc="Thonglor" style="top: 65%; left: 48%;" onclick="selectMap('Thonglor')"></div>
+                <div class="pin-label" style="top: 65%; left: 48%;">ทองหล่อ</div>
 
-                <div class="map-pin" data-loc="Silom" style="top: 55%; left: 35%;" onclick="selectMap('Silom')"></div>
-                <div class="pin-label" style="top: 55%; left: 35%;">สีลม</div>
-
-                <div class="map-pin" data-loc="Sathorn" style="top: 58%; left: 35%;" onclick="selectMap('Sathorn')"></div>
-                <div class="pin-label" style="top: 58%; left: 35%;">สาทร</div>
-
-                <div class="map-pin" data-loc="Sukhumvit" style="top: 52%; left: 41%;" onclick="selectMap('Sukhumvit')"></div>
-                <div class="pin-label" style="top: 52%; left: 41%;">สุขุมวิท</div>
-                
-                <div class="map-pin" data-loc="Ratchada" style="top: 45%; left: 41%;" onclick="selectMap('Ratchada')"></div>
-                <div class="pin-label" style="top: 45%; left: 41%;">รัชดา</div>
-
-                <div class="map-pin" data-loc="Thonglor" style="top: 53%; left: 44%;" onclick="selectMap('Thonglor')"></div>
-                <div class="pin-label" style="top: 53%; left: 44%;">ทองหล่อ</div>
-
-                <div class="map-pin" data-loc="Ekkamai" style="top: 54%; left: 46%;" onclick="selectMap('Ekkamai')"></div>
-                <div class="pin-label" style="top: 54%; left: 46%;">เอกมัย</div>
-
-                <div class="map-pin" data-loc="Ladprao" style="top: 36%; left: 45%;" onclick="selectMap('Ladprao')"></div>
-                <div class="pin-label" style="top: 36%; left: 45%;">ลาดพร้าว</div>
+                <div class="map-pin" data-loc="Ekkamai" style="top: 70%; left: 50%;" onclick="selectMap('Ekkamai')"></div>
+                <div class="pin-label" style="top: 70%; left: 50%;">เอกมัย</div>
             </div>
             
             <div class="form-group">
