@@ -37,7 +37,7 @@ print(f"▶ พื้นที่เฉลี่ย:      {df['Area'].mean():.2f
 print("\n--- 3. ประมวลผล Linear Algebra ---")
 # แปลงตัวหนังสือ (Type, Location) ให้เป็นเวกเตอร์เลข 0 และ 1 (One-Hot Encoding)
 df_encoded = pd.get_dummies(df, columns=['Type', 'Location'], drop_first=False)
-
+# print(df_encoded[['Type_Apartment', 'Type_Condo', 'Type_House']])
 # ดึงชื่อคอลัมน์ที่เป็นตัวแปรต้น (ตัด Price ออก)
 features = [col for col in df_encoded.columns if col != 'Price']
 
