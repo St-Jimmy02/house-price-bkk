@@ -14,8 +14,8 @@ with open('Bkk_Real_Estate_data.csv', 'r', encoding='utf-8') as f:
         if len(parts) >= 6:
             try:
                 prop_type = parts[0]
-                beds = 1 if prop_type == 'Apartment' else int(parts[3])
-                baths = 1 if prop_type == 'Apartment' else int(parts[4])
+                beds = int(parts[3])
+                baths = int(parts[4])
                 clean_data.append({
                     'Type': prop_type, 'Location': parts[1], 'Area': float(parts[2]),
                     'Bedrooms': beds, 'Bathrooms': baths, 'Price': float(parts[5])
