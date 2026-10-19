@@ -55,9 +55,6 @@ class PropertyData(BaseModel):
 
 @app.post("/predict")
 def predict_price(data: PropertyData):
-    if data.prop_type == 'Apartment':
-        data.bedrooms = 1
-        data.bathrooms = 1
 
     input_vector = np.zeros(len(features_cols))
     input_vector[features_cols.index('Area')] = data.area
